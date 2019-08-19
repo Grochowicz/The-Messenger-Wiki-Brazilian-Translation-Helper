@@ -1,6 +1,6 @@
 # The-Messenger-Wiki-Brazilian-Translation-Helper
 A tool to (theoretically) make translating The Messenger Wiki into Brazilian Portuguese a little less repetitive.
-This is a little program to run in you browser that doesn't really make sense unless you speak portuguese. Portuguese version of the description incoming.
+This is a little program to run in you browser that doesn't really make sense unless you speak Portuguese. Portuguese version of the description incoming.
 
 # The-Messenger-Wiki-Brazilian-Translation-Helper
 Uma ferramenta para (teoricamente) deixar a tradução da The Messenger Wiki para Português brasileiro um pouco menos repetitiva.

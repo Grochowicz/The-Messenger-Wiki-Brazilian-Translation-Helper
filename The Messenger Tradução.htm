@@ -1,0 +1,217 @@
+<head>
+<style>
+.button
+{
+background-color: #191971;
+color: white;
+padding:10px;
+}
+.button:hover
+{
+background-color: #2424a3;
+}
+.button:active
+{
+border-radius:30%;
+}
+.input
+{
+border-radius:5px;
+}
+</style
+</head>
+<body bgcolor = black>
+<b><font color = #68e8db size = 6 face = Bahnschrift>
+Traduzir nomes comuns em The Messenger do inglês para português<br>
+</b></font>
+<b><font color = gray size = 4 face = Bahnschrift>
+Versão Personagens apenas (WIP)<br>
+</b></font>
+<div><font color = white size = 4 face = Bahnschrift>
+Cole aqui texto sobre The Messenger em inglês e o programa traduzirá todos os nomes de Personagem.<br>
+O resultado magicamente aparecerá na sua área de transferência!! (além de na caixa de texto)
+</div></font>
+<textarea class = "input" id = "input" cols = 50 rows = 20></textarea>
+<button class = "button" onclick = Traduzir(document.getElementById("input").value) onkeypress = Detectar(event)>Traduzir</button>
+</body>
+<script>
+function Traduzir(iv)
+{
+	var nomes = "";
+	var nomeInicios = [""];
+	var nomeFins = [""];
+	var letras = iv.split("");
+	if(letras.length>0)
+	{
+		for (i=2;i<=letras.length;i++)
+		{
+			if(letras[i-1] == "[" && letras[i-2] == "[")
+			{
+				nomeInicios.push(i);
+				for (i2=i;letras[i2] != "]" && letras[i2] != "|";i2++)
+				{
+					nomes += letras[i2];
+				}
+				nomes += ";";
+				nomeFins.push(i2);
+				i=i2+1;
+			}
+		}
+		CopiarTraduzido(iv, nomeInicios, nomeFins, nomes.split(";"));
+	}
+}
+//Copia um array parando sempre que chegar a um dos inisArr, traduzindo e partindo do equivalente finsArr+1
+function CopiarTraduzido(arr, inisArr, finsArr, nomesArr)
+{
+	var textoFinal = "";
+	var i2 = 1;
+	var linebreakNextTime = true;
+	for (i=0;i<arr.length;i++)
+	{	
+		if (i == inisArr[i2])
+		{
+			textoFinal += TraduzirDireto(nomesArr[i2-1]);
+			i = finsArr[i2];
+			i2++;
+		}
+		textoFinal += arr[i];
+	}
+	console.log(textoFinal);
+	document.getElementById("input").value = textoFinal;
+	var copiar = document.querySelector("#input");
+	copiar.select();
+	document.execCommand("copy");
+}
+function TraduzirDireto(txt)
+{
+	switch (txt)
+	{
+		//Personagens
+		case "Rock Lesieur":
+			return "Rocha Lesieur";
+			break;
+		case "Ninja Elder":
+			return "Ninja Ancião";
+			break;
+		case "Demon King":
+			return "Rei Demônio";
+			break;
+		case "Quarble":
+			return "Sofismuto";
+			break;
+		case "The Shopkeeper":
+			return "O Lojista";
+			break;
+		case "Cage Monster & Parrot":
+			return "Monstro na Gaiola e Papagaio";
+			break;
+		case "Ruxxtin":
+			return "Rustino";
+			break;
+		case "Emerald Golem":
+			return "Golem de Esmeralda";
+			break;
+		case "Primal Fear":
+			return "Terror Primal";
+			break;
+		case "Monk":
+			return "Monja";
+			break;
+		case "Quillble":
+			return "Sofisma";
+			break;
+		case "Colos & Suses":
+			return "Gigan & Tescos";
+			break;
+		case "The Artificer":
+			return "O Artesão";
+			break;
+		case "The Prophet":
+			return "O Profeta";
+			break;
+		case "The Iron Hood":
+			return "Capuz Ferrenho";
+			break;
+		case "Manfred":
+			return "Manfredo";
+			break;
+		case "Soldier":
+			return "Soldado";
+			break;
+		case "Butterfly Matriarch":
+			return "Borboleta Matriarca";
+			break;
+		case "Guardian Gods":
+			return "Deuses Guardiões";
+			break;
+		case "Clockwork Concierge":
+			return "Concierge Robótico";
+			break;
+		case "Muse":
+			return "Musa";
+			break;
+		case "Phantom":
+			return "Sombra";
+			break;
+		case "Dark Messenger":
+			return "Mensageiro Sombrio";
+			break;
+		case "Voodoo Mask":
+			return "Máscara Vudu";
+			break;
+		//Grupos
+		case "Demons":
+			return "Demônios";
+			break;
+		case "Greed Demons":
+			return "Demônios da Ganância";
+			break;
+		case "Order of The Blue Robes":
+			return "Ordem dos Vestes Azuis";
+			break;
+		case "Phobekins":
+			return "Fobitos";
+			break;
+		//Títulos Especiais
+		case "Messengers":
+			return "Mensageiros";
+			break;
+		case "Western Hero":
+			return "Herói do Oeste";
+			break;
+		case "Fallen":
+			return "Caído";
+			break;
+		//Diversos/comuns
+		case "The Messenger (game)":
+			return "The Messenger";
+			break;
+		case "Picnic Panic":
+			return "Pânico no Piquenique";
+			break;
+		case "Characters":
+			return "Personagens";
+			break;
+		case "Enemies":
+			return "Inimigos";
+			break;
+		case "New Game +":
+			return "Novo Jogo +";
+			break;
+		case "Inventory":
+			return "Inventário";
+			break;
+		case "Bosses":
+			return "Chefes";
+			break;
+		case "Locations":
+			return "Regiões";
+			break;
+		case "Achievements":
+			return "Conquistas";
+			break;
+		default:
+			return txt;
+	}
+}
+</script>
